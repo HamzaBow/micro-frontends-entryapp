@@ -2,10 +2,11 @@
 import Service1App from 'service1/Service1App'
 // @ts-expect-error this is a remote component (micro-frontends)
 import Service2App from 'service2/Service2App'
+import { AppBar } from './components/ui/AppBar'
 
 const serviceNameArrayConst = ['service1', 'service2'] as const
 // const serviceNameArray      = [...serviceNameArrayConst]
-type ServiceName = (typeof serviceNameArrayConst)[number]
+export type ServiceName = (typeof serviceNameArrayConst)[number]
 
 type Services = Record<ServiceName, { component: JSX.Element; title: string }>
 
@@ -25,8 +26,8 @@ function App() {
     '/'
   )[1] as ServiceName
   return (
-    <div className='h-full'>
-      <div className='flex h-8 w-full items-center justify-between bg-slate-500 px-8 py-1'>
+    <div className=''>
+      {/* <div className='flex h-8 w-full items-center justify-between bg-slate-500 px-8 py-1'>
         <div className='flex gap-2'>
           <div className='mr-6'>Acme Corporation</div>
           {Object.keys(services).map((serviceName) => (
@@ -40,7 +41,8 @@ function App() {
           ))}
         </div>
         <div>Account</div>
-      </div>
+      </div> */}
+      <AppBar />
 
       {Object.keys(services).map((serviceName) => {
         if (serviceName !== service) return null
